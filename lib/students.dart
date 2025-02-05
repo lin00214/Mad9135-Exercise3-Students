@@ -4,24 +4,43 @@ class Students {
   Students(List<Map<String, dynamic>> this.people);
 
   sort(String fieldName){
-    //sort the List based on the fieldName in each Map.
-    //fieldName would be something like 'email' or 'first'
+    people.sort((first, second) {
+      var firstStudent = first[fieldName];
+      var secondStudent = second[fieldName];
 
-    //after sort call output()
+      if (fieldName == 'id') {
+        return firstStudent.compareTo(secondStudent);
+      } else if (fieldName == "first" || fieldName == "last" || fieldName == "email") {
+        return firstStudent.toString().compareTo(secondStudent.toString());
+      } else {
+        return firstStudent.compareTo(secondStudent);
+      }
+    })
+
+    output();
   }
+
   output(){
-    //loop and print each Map object properties and values
-  }
-  plus(Map<String, dynamic> person) {
-    //add a person Map to the people List
+    for (var i = 0; i < people.length; i++) {
+      var student = people[i];
 
-    //last step is to call output
+      for (var key in student.keys) {
+        print("$key: ${student[key]}");
+      }
+    }
   }
+
+  plus(Map<String, dynamic> student) {
+    people.add(student);
+
+    output();
+  }
+
   remove(String fieldName){
-    //remove a key-value entry from any Map that contains a property with the name fieldName.
-    //Eg: {id: 2, first:'Steve', last:'Griffith', email: 'griffis@algonquincollege.com'}
-    // with field="email", remove the "email" property from EACH Map in the LIST
+    for (var student in people) {
+      student.remove(fieldName);
+    }
 
-    //last step is to call output()
+    output();
   }
 }
