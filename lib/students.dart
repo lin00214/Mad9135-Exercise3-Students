@@ -37,9 +37,9 @@ class Students {
   }
 
   remove(String fieldName){
-    for (var student in people) {
-      student.remove(fieldName);
-    }
+    people.removeWhere((student) {
+      return student.containsKey(fieldName);
+    });
 
     output();
   }
