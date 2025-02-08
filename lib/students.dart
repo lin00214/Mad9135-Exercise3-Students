@@ -15,7 +15,7 @@ class Students {
       } else {
         return firstStudent.compareTo(secondStudent);
       }
-    })
+    });
 
     output();
   }
@@ -38,7 +38,8 @@ class Students {
 
   remove(String fieldName){
     people.removeWhere((student) {
-      return student.containsKey(fieldName);
+      student.remove(fieldName);
+      return false;
     });
 
     output();

@@ -1,4 +1,4 @@
-import 'package:students/students.dart' as students;
+import 'package:students/students.dart';
 import 'dart:convert' as convert;
 
 void main() {
@@ -11,11 +11,30 @@ void main() {
   {"id":4, "first":"Freya", "last":"Nolan", "email":"freya@outlook.com", "age": 46},
   {"id":5, "first":"Coral", "last":"Mary", "email":"coral@outlook.com", "age": 18}
 ]
-'''
+''';
 
-  try {
+  List<Map<String, dynamic>> list = (convert.jsonDecode(json) as List).map((item) => Map<String, dynamic>.from(item)).toList();
+  var students = Students(list);
 
-  } catch (err) {
+  students.sort("first");
+  print("");
+  // students.sort("last");
+  // print("");
+  // students.sort("email");
+  // print("");
+  // students.sort("age");
+  // print("");
 
-  }
+  print("Add a new student information:");
+  students.plus({
+    "id": 6,
+    "first": "Oliver",
+    "last": "Wood",
+    "email": "oliver@outlook.com",
+    "age": 42,
+  });
+  print("");
+
+  print("Remove students' last name:");
+  students.remove("last");
 }
