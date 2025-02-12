@@ -36,8 +36,8 @@ class Students {
     output();
   }
 
-  remove(String fieldName){
-    people.removeWhere((student) => student.containsKey(fieldName));
+  remove(String fieldName, String value) {
+    people.removeWhere((student) => student[fieldName] == value);
 
     output();
   }
