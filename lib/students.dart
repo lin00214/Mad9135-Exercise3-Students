@@ -37,10 +37,7 @@ class Students {
   }
 
   remove(String fieldName){
-    people.removeWhere((student) {
-      student.remove(fieldName);
-      return false;
-    });
+    people.removeWhere((student) => student.containsKey(fieldName));
 
     output();
   }
